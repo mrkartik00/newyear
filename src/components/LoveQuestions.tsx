@@ -4,7 +4,7 @@ import { Heart, Sparkles, Crown, Home, MapPin, Calendar, Infinity } from "lucide
 interface Question {
   id: number;
   question: string;
-  options: string[];
+  options: (string | React.ReactNode)[];
   response: string;
   correctIndex?: number;
   icon?: React.ReactNode;
@@ -26,49 +26,77 @@ const questions: Question[] = [
   {
     id: 3,
     question: "Where is your heart from?",
-    options: ["Jammu 💖", "Jammu (with extra hearts)", "Jammu (glowing)"],
+    options: [
+      "Jammu 💖",
+      <span className="inline-flex items-center gap-1">Jammu <Heart className="w-4 h-4 fill-red-500 text-red-500 animate-pulse" /> <Heart className="w-3 h-3 fill-pink-500 text-pink-500 animate-pulse" style={{animationDelay: '0.2s'}} /></span>,
+      <span className="animate-pulse bg-gradient-to-r from-pink-500 via-rose-500 to-red-500 bg-clip-text text-transparent font-bold">Jammu ✨</span>
+    ],
     response: "And mine learned how to belong there.",
     icon: <MapPin className="w-5 h-5" />,
   },
   {
     id: 4,
     question: "Where did your love find you?",
-    options: ["Lucknow", "Lucknow ✨", "Lucknow (highlighted)"],
+    options: [
+      "Lucknow",
+      <span className="inline-flex items-center gap-1">Lucknow <Sparkles className="w-4 h-4 text-yellow-400 animate-pulse" /></span>,
+      <span className="bg-yellow-200 px-2 py-1 rounded font-semibold text-yellow-900">Lucknow</span>
+    ],
     response: "Lucknow didn't just teach me culture — it gave me you.",
     icon: <MapPin className="w-5 h-5" />,
   },
   {
     id: 5,
     question: "When did our story begin?",
-    options: ["December", "During mid-sems", "Exactly when we met 💕"],
+    options: [
+      "December",
+      "During mid-sems",
+      <span className="inline-flex items-center gap-1">Exactly when we met <Heart className="w-4 h-4 fill-pink-500 text-pink-500 animate-bounce" /></span>
+    ],
     response: "Chaos outside, magic inside.",
     icon: <Calendar className="w-5 h-5" />,
   },
   {
     id: 6,
     question: "How did we start?",
-    options: ["Calm & smooth", "Fighting & confusion", "Real & honest 💖"],
+    options: [
+      "Calm & smooth",
+      "Fighting & confusion",
+      <span className="inline-flex items-center gap-1">Real & honest <Heart className="w-4 h-4 fill-red-500 text-red-500 animate-pulse" /></span>
+    ],
     response: "The best stories never start perfect.",
     correctIndex: 2,
   },
   {
     id: 7,
     question: "What kept us together?",
-    options: ["Ego", "Silence", "Love + Effort + Choosing each other 💖"],
+    options: [
+      "Ego",
+      "Silence",
+      <span className="inline-flex items-center gap-1">Love + Effort + Choosing each other <Heart className="w-4 h-4 fill-red-500 text-red-500 animate-pulse" /></span>
+    ],
     response: "Always choosing, always us.",
     correctIndex: 2,
   },
   {
     id: 8,
     question: "Which date changed everything?",
-    options: ["1st January", "14th February", "4th June ✨"],
+    options: [
+      "1st January",
+      "14th February",
+      <span className="inline-flex items-center gap-1">4th June <Sparkles className="w-4 h-4 text-yellow-400 animate-pulse" /></span>
+    ],
     response: "A proposal, a promise, a forever.",
     correctIndex: 2,
   },
   {
     id: 9,
     question: "What are we now?",
-    options: ["Just a couple", "Best friends", "Home to each other 🏡"],
+    options: [
+      "Just a couple",
+      "Best friends",
+      <span className="inline-flex items-center gap-1">Home to each other <Home className="w-4 h-4 text-amber-600 animate-pulse" /></span>
+    ],
     response: "Home isn't a place. It's a person.",
     correctIndex: 2,
     icon: <Home className="w-5 h-5" />,
@@ -76,21 +104,33 @@ const questions: Question[] = [
   {
     id: 10,
     question: "Who wins most arguments? 😏",
-    options: ["Tejaswi 😌", "Tejaswi (with crown)", "Tejaswi (always)"],
+    options: [
+      "Tejaswi 😌",
+      <span className="inline-flex items-center gap-1">Tejaswi <Crown className="w-4 h-4 text-yellow-500 animate-bounce" /></span>,
+      <span className="font-bold text-transparent bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 bg-clip-text">Tejaswi (always)</span>
+    ],
     response: "And I happily lose.",
     icon: <Crown className="w-5 h-5" />,
   },
   {
     id: 11,
     question: "Where are we going?",
-    options: ["More memories", "More love", "Forever together ♾️"],
+    options: [
+      "More memories",
+      "More love",
+      <span className="inline-flex items-center gap-1">Forever together <Infinity className="w-4 h-4 text-purple-500 animate-pulse" /></span>
+    ],
     response: "Destination: Always.",
     icon: <Infinity className="w-5 h-5" />,
   },
   {
     id: 12,
     question: "Who will I love in every New Year?",
-    options: ["Tejaswi 💕", "Tejaswi forever", "Only Tejaswi"],
+    options: [
+      <span className="inline-flex items-center gap-1">Tejaswi <Heart className="w-4 h-4 fill-pink-500 text-pink-500 animate-pulse" /></span>,
+      <span className="inline-flex items-center gap-1">Tejaswi forever <Infinity className="w-3 h-3 text-purple-500 animate-pulse" /></span>,
+      <span className="font-bold bg-gradient-to-r from-pink-500 via-red-500 to-rose-500 bg-clip-text text-transparent">Only Tejaswi</span>
+    ],
     response: "Every year. Every lifetime.",
   },
 ];
